@@ -31,9 +31,6 @@
     localNetworkGameTransfers.openFirewall = true;
     extraCompatPackages = [ pkgs.proton-ge-bin ];
   };
-
-  programs.gamemode.enable = true;
-
   # ============================
   #         SESSION VARIABLES
   # ============================
