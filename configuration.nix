@@ -73,18 +73,6 @@
 
   services.displayManager.sddm.enable = true;
 
-  services.desktopManager.plasma6.enable = true;
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    elisa
-    plasma-browser-integration
-    konsole
-    kate
-  ];
-
-  programs.hyprland.enable = true;
-
-
   # ============================
   #          AUDIO
   # ============================
@@ -97,51 +85,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  # ============================
-  #         APPLICATIONS
-  # ============================
-
-  nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    librewolf
-    fira-code
-    fastfetch
-    discord
-    git
-    vulkan-loader
-    protonup
-    kitty
-    vscodium
-
-    waybar
-    wofi
-    dunst
-    hyprpaper
-  ];
-
-  fonts.fontconfig.defaultFonts.monospace = [ "Fira Code" ];
-
-  # ============================
-  #          GAMING
-  # ============================
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
-  };
-
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-  };
-
-  programs.gamemode.enable = true;
-
-  # gamemoderun %command% -no_prewarm_map
 
   # ============================
   #         USER SETTINGS
@@ -178,13 +121,9 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-
   nix.gc = {
-  automatic = true;
-  dates = "weekly";
-  options = "--delete-older-than 7d";
-};
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 }
-
-
-
