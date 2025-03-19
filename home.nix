@@ -8,21 +8,7 @@
   #    DESKTOP ENVIRONMENT
   # ============================
 
-  services.desktopManager.plasma6.enable = true;
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    elisa
-    plasma-browser-integration
-    konsole
-    kate
-  ];
-
-  programs.hyprland.enable = true;
-
-  # ============================
-  #         APPLICATIONS
-  # ============================
-
+  # Use `home` instead of `environment`
   home.packages = with pkgs; [
     librewolf
     fira-code
@@ -40,7 +26,15 @@
     hyprpaper
   ];
 
-  fonts.fontconfig.defaultFonts.monospace = [ "Fira Code" ];
+  # Plasma 6 configuration
+  services.plasma6.excludePackages = with pkgs.kdePackages; [
+    elisa
+    plasma-browser-integration
+    konsole
+    kate
+  ];
+
+  programs.hyprland.enable = true;
 
   # ============================
   #          GAMING
