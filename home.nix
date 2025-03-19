@@ -1,14 +1,10 @@
-{ config, pkgs, inputs, ... }: 
-
-{
+{ config, pkgs, inputs, ... }: {
   home.username = "lee";
   home.homeDirectory = "/home/lee";
 
   # ============================
-  #    DESKTOP ENVIRONMENT
+  #         APPLICATIONS
   # ============================
-
-  # Use `home` instead of `environment`
   home.packages = with pkgs; [
     librewolf
     fira-code
@@ -19,27 +15,15 @@
     protonup
     kitty
     vscodium
-
     waybar
     wofi
     dunst
     hyprpaper
   ];
 
-  # Plasma 6 configuration
-  services.plasma6.excludePackages = with pkgs.kdePackages; [
-    elisa
-    plasma-browser-integration
-    konsole
-    kate
-  ];
-
-  programs.hyprland.enable = true;
-
   # ============================
   #          GAMING
   # ============================
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -48,10 +32,11 @@
     extraCompatPackages = [ pkgs.proton-ge-bin ];
   };
 
+  programs.gamemode.enable = true;
+
   # ============================
   #         SESSION VARIABLES
   # ============================
-
   home.sessionVariables = {
     BROWSER = "librewolf";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
@@ -60,7 +45,6 @@
   # ============================
   #         KITTY CONFIG
   # ============================
-
   programs.kitty = {
     enable = true;
     settings = {
@@ -72,7 +56,5 @@
   };
 
   home.stateVersion = "24.11";
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

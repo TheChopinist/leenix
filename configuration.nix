@@ -23,11 +23,9 @@
 */
 
 { config, pkgs, inputs, ... }: {
-
   # ============================
   #         SYSTEM SETUP
   # ============================
-
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -44,7 +42,6 @@
   # ============================
   #      LOCALIZATION & INPUT
   # ============================
-
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_CH.UTF-8";
@@ -70,13 +67,20 @@
   # ============================
   #    DESKTOP ENVIRONMENT
   # ============================
-
   services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    elisa
+    plasma-browser-integration
+    konsole
+    kate
+  ];
+
+  programs.hyprland = true;
 
   # ============================
   #          AUDIO
   # ============================
-
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -89,7 +93,6 @@
   # ============================
   #         USER SETTINGS
   # ============================
-
   users.users.lee = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ];
@@ -105,14 +108,12 @@
   # ============================
   #         GRAPHICS
   # ============================
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
-
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.finegrained = false;
