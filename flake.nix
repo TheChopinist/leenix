@@ -11,15 +11,15 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-  nixosConfigurations.leenux = nixpkgs.lib.nixosSystem {
-    specialArgs = {
-      inherit inputs;
-      hardwareConfig = ./hardware-configuration.nix;  # Pass the file as an argument
+    nixosConfigurations.leenux = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs;
+        hardwareConfig = /etc/nixos/hardware-configuration.nix;  # Absolute path
+      };
+      modules = [
+        ./configuration.nix
+        inputs.home-manager.nixosModules.default
+      ];
     };
-    modules = [
-      ./configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
   };
-};
 }
