@@ -76,7 +76,10 @@
     kate
   ];
 
-  programs.hyprland = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;  # Keep this if you need XWayland support
+  };
 
   # ============================
   #          AUDIO
