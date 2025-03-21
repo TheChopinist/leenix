@@ -70,7 +70,7 @@
 
   console.keyMap = "sg";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # ============================
   #    DESKTOP ENVIRONMENT
@@ -133,11 +133,13 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  /*
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+  */
 
   programs.steam = {
     enable = true;
