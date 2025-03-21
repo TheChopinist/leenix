@@ -1,35 +1,42 @@
-/*
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
 
-██████╗  █████╗ ███████╗███████╗    ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
-██╔══██╗██╔══██╗██╔════╝██╔════╝    ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
-██████╔╝███████║███████╗█████╗      ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
-██╔══██╗██╔══██║╚════██║██╔══╝      ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║
-██████╔╝██║  ██║███████║███████╗    ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
-╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝    ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
-*/
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
 
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  in {
+    settings = {
+      experimental-features = "nix-command flakes";
+      # Opinionated: disable global registry
+      flake-registry = "";
+      # Workaround for https://github.com/NixOS/nix/issues/9574
+      nix-path = config.nix.nixPath;
+    };
+    # Opinionated: disable channels
+    channel.enable = false;
 
-/*
+    # Opinionated: make flake registry and nix path match flake inputs
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  };
 
-  Todo: Modularize DE Packages and stuff
-  Install maybe? https://nixos.wiki/wiki/Gamemode
-
-  Github: https://github.com/TheChopinist/leenux
-  Package Search: https://search.nixos.org/
-  Text Generator: https://www.fancytextpro.com/BigTextGenerator
-  Tutorials used: https://youtu.be/a67Sv4Mbxmc
-
-*/
-
-{ config, pkgs, inputs, ... }: {
   # ============================
   #         SYSTEM SETUP
   # ============================
-  imports = [
-    ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
-  ];
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -42,6 +49,7 @@
   # ============================
   #      LOCALIZATION & INPUT
   # ============================
+
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_CH.UTF-8";
@@ -67,6 +75,7 @@
   # ============================
   #    DESKTOP ENVIRONMENT
   # ============================
+
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -74,6 +83,7 @@
     plasma-browser-integration
     konsole
     kate
+    dolphin
   ];
 
   programs.hyprland = {
@@ -84,6 +94,7 @@
   # ============================
   #          AUDIO
   # ============================
+
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -96,21 +107,18 @@
   # ============================
   #         USER SETTINGS
   # ============================
+
   users.users.lee = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ];
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "lee" = import ./home.nix;
-    };
-  };
+
 
   # ============================
   #         GRAPHICS
   # ============================
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -130,4 +138,15 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+  };
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "23.05";
 }

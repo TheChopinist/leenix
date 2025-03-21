@@ -1,5 +1,5 @@
 {
-  description = "Nixos config flake";
+  description = "Your new nix config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,13 +9,29 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.leenux = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };  # Remove hardwareConfig
-      modules = [
-        ./configuration.nix
-        inputs.home-manager.nixosModules.default
-      ];
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+  in {
+    # Available through 'nixos-rebuild --flake .#leenux'
+    nixosConfigurations = {
+      leenux = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./nixos/configuration.nix];
+      };
+    };
+
+    # Available through 'home-manager --flake .#lee'
+    homeConfigurations = {
+      "lee" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./home-manager/home.nix];
+      };
     };
   };
 }

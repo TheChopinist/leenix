@@ -1,11 +1,15 @@
-{ config, pkgs, inputs, ... }: {
-  home.username = "lee";
-  home.homeDirectory = "/home/lee";
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
 
-  # ============================
-  #         APPLICATIONS
-  # ============================
-  home.packages = with pkgs; [
+  imports = [
+  ];
+
+  nixpkgs = {
     librewolf
     fira-code
     fastfetch
@@ -15,25 +19,24 @@
     protonup
     kitty
     vscodium
+    nautilus
+
     waybar
     wofi
     dunst
     hyprpaper
-  ];
 
-  # ============================
-  #          GAMING
-  # ============================
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    config = {
+      allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = _: true;
+    };
   };
+
   # ============================
   #         SESSION VARIABLES
   # ============================
+  
   home.sessionVariables = {
     BROWSER = "librewolf";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
@@ -52,6 +55,11 @@
     };
   };
 
-  home.stateVersion = "24.11";
   programs.home-manager.enable = true;
+
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "23.05";
 }
