@@ -30,6 +30,8 @@
 
     # modules
     ./modules/system.nix
+    ./modules/user.nix
+    ./modules/graphics.nix
     ./modules/audio.nix
   ];
 
