@@ -80,6 +80,7 @@
     plasma-browser-integration
     konsole
     kate
+    dolphin
   ];
 
   programs.hyprland.enable = true;
@@ -114,6 +115,7 @@
     protonup
     kitty
     vscodium
+    nautilus
 
     waybar
     wofi

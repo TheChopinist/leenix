@@ -18,5 +18,15 @@
     # EDITOR = "emacs";
   };
 
+  programs.kitty = {
+    enable = true;
+    settings = {
+      font_size = 12;
+      font_family = "Fira Code";
+      background_opacity = "0.5";
+      confirm_os_window_close = 0;
+    };
+  };
+
   programs.home-manager.enable = true;
 }
