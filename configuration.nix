@@ -30,6 +30,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
   ];
 
   boot.loader = {
@@ -145,6 +146,14 @@
   users.users.lee = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ];
+  };
+
+  home-manager = {
+    # also pass inputs to home-manager modules
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      "lee" = import ./home.nix;
+    };
   };
 
   # ============================
