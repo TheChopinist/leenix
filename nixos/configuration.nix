@@ -31,7 +31,7 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
     # modules
     ./modules/system.nix
     # ./modules/user.nix
-    .modules/de.nix
+    ./modules/de.nix
     ./modules/graphics.nix
     ./modules/audio.nix
   ];
