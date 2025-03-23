@@ -47,10 +47,10 @@
     cmatrix
     cava
 
-    #waybar
-    #wofi
-    #dunst
-    #hyprpaper
+    waybar
+    wofi
+    dunst
+    hyprpaper
   ];
 
   fonts.fontconfig.defaultFonts.monospace = ["Fira Code"];
