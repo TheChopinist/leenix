@@ -1,3 +1,24 @@
+/*
+
+██████╗  █████╗ ███████╗███████╗    ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
+██╔══██╗██╔══██╗██╔════╝██╔════╝    ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
+██████╔╝███████║███████╗█████╗      ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
+██╔══██╗██╔══██║╚════██║██╔══╝      ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║
+██████╔╝██║  ██║███████║███████╗    ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
+╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝    ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
+*/
+/*
+
+Todo: Modularize DE Packages and stuff
+Install maybe? https://nixos.wiki/wiki/Gamemode
+https://github.com/Gerg-L/spicetify-nix/
+
+Github: https://github.com/TheChopinist/leenux
+Package Search: https://search.nixos.org/
+Text Generator: https://www.fancytextpro.com/BigTextGenerator
+Tutorials used: https://youtu.be/a67Sv4Mbxmc
+*/
+
 {
   description = "Leenix";
 
