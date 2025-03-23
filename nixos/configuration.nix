@@ -101,10 +101,14 @@
   options = "--delete-older-than 7d";
   };
 
-    users.users.lee = {
+  users.users.lee = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ];
   };
+
+
+  # dont have sudo rn?
+  security.sudo.enable = true;
 
   home-manager = {
     # also pass inputs to home-manager modules
