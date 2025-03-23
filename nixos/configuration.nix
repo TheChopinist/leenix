@@ -17,6 +17,17 @@
   ];
 
   # ============================
+  #         TEMPORARY
+  # ============================
+  
+  # No reaction in hyprland
+  boot.kernelParams = [
+    "initcall_blacklist=simpledrm_platform_driver_init"
+  ];
+  # dont have sudo rn? !!!! REMOVE ON NEW PC SINCE I MESSED UP HERE ONCE
+  security.sudo.enable = true;
+
+  # ============================
   #         APPLICATIONS
   # ============================
 
@@ -36,10 +47,10 @@
     cmatrix
     cava
 
-    waybar
-    wofi
-    dunst
-    hyprpaper
+    #waybar
+    #wofi
+    #dunst
+    #hyprpaper
   ];
 
   fonts.fontconfig.defaultFonts.monospace = ["Fira Code"];
@@ -72,9 +83,6 @@
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "video"];
   };
-
-  # dont have sudo rn? !!!! REMOVE ON NEW PC SINCE I MESSED UP HERE ONCE
-  security.sudo.enable = true;
 
   home-manager = {
     # also pass inputs to home-manager modules
