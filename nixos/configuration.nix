@@ -52,7 +52,7 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
     protonup
     kitty
     vscodium
-    noisetorch
+    easyeffects
     nautilus
 
     waybar
