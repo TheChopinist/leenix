@@ -23,7 +23,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    ly
     librewolf
     fira-code
     fastfetch
