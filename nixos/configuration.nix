@@ -31,26 +31,10 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
     # modules
     ./modules/system.nix
     # ./modules/user.nix
+    .modules/de.nix
     ./modules/graphics.nix
     ./modules/audio.nix
   ];
-
-  # ============================
-  #    DESKTOP ENVIRONMENT
-  # ============================
-
-  services.displayManager.sddm.enable = true;
-
-  services.desktopManager.plasma6.enable = true;
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    elisa
-    plasma-browser-integration
-    konsole
-    kate
-  ];
-
-  programs.hyprland.enable = true;
 
   # ============================
   #         APPLICATIONS
@@ -68,6 +52,7 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
     protonup
     kitty
     vscodium
+    noisetorch
     nautilus
 
     waybar
