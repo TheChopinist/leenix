@@ -14,7 +14,7 @@
     nixosConfigurations.leenux = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./configuration.nix
+        ./nixos/configuration.nix
         inputs.home-manager.nixosModules.default
       ];
     };
