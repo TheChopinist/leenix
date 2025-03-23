@@ -10,8 +10,11 @@
 /*
 
 Todo: Modularize DE Packages and stuff
-Install maybe? https://nixos.wiki/wiki/Gamemode
+Install maybe?:
+https://nixos.wiki/wiki/Gamemode
 https://github.com/Gerg-L/spicetify-nix/
+
+Theme Future: https://github.com/catppuccin/catppuccin
 
 Github: https://github.com/TheChopinist/leenux
 Package Search: https://search.nixos.org/
