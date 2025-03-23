@@ -6,24 +6,24 @@
 ██╔══██╗██╔══██║╚════██║██╔══╝      ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║
 ██████╔╝██║  ██║███████║███████╗    ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
 ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝    ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
-
 */
-
-
 /*
 
-  Todo: Modularize DE Packages and stuff
-  Install maybe? https://nixos.wiki/wiki/Gamemode
+Todo: Modularize DE Packages and stuff
+Install maybe? https://nixos.wiki/wiki/Gamemode
 
-  Github: https://github.com/TheChopinist/leenux
-  Package Search: https://search.nixos.org/
-  Text Generator: https://www.fancytextpro.com/BigTextGenerator
-  Tutorials used: https://youtu.be/a67Sv4Mbxmc
-
+Github: https://github.com/TheChopinist/leenux
+Package Search: https://search.nixos.org/
+Text Generator: https://www.fancytextpro.com/BigTextGenerator
+Tutorials used: https://youtu.be/a67Sv4Mbxmc
 */
 
-{ config, pkgs, inputs, ... }: {
-
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -48,7 +48,6 @@
     plasma-browser-integration
     konsole
     kate
-    dolphin
   ];
 
   programs.hyprland.enable = true;
@@ -77,7 +76,7 @@
     hyprpaper
   ];
 
-  fonts.fontconfig.defaultFonts.monospace = [ "Fira Code" ];
+  fonts.fontconfig.defaultFonts.monospace = ["Fira Code"];
 
   # ============================
   #          GAMING
@@ -88,7 +87,7 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extraCompatPackages = [pkgs.proton-ge-bin];
   };
 
   environment.sessionVariables = {
@@ -96,18 +95,19 @@
   };
 
   nix.gc = {
-  automatic = true;
-  dates = "weekly";
-  options = "--delete-older-than 7d";
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
+
+  nix.settings.auto-optimise-store = true;
 
   users.users.lee = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" ];
+    extraGroups = ["wheel" "networkmanager" "video"];
   };
 
-
-  # dont have sudo rn?
+  # dont have sudo rn? !!!! REMOVE ON NEW PC SINCE I MESSED UP HERE ONCE
   security.sudo.enable = true;
 
   home-manager = {

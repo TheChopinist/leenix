@@ -1,5 +1,5 @@
 {
-  description = "Nixos config flake";
+  description = "Leenix";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -11,7 +11,7 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.leenux = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.leenix = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
         ./nixos/configuration.nix
