@@ -46,6 +46,7 @@
     easyeffects
     cmatrix
     cava
+    btop
 
     waybar
     wofi
@@ -70,6 +71,8 @@
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
   };
+
+  programs.gamemode.enable = true;
 
   nix.gc = {
     automatic = true;
