@@ -52,6 +52,8 @@
     wofi
     dunst
     hyprpaper
+
+    mangohud
   ];
 
   fonts.fontconfig.defaultFonts.monospace = ["Fira Code"];
