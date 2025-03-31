@@ -47,6 +47,7 @@
     cmatrix
     cava
     btop
+    nodejs
 
     waybar
     wofi
