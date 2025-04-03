@@ -1,9 +1,16 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
-   imports = [
-     ./modules/hyprland/hyprland.nix
-   ];
+  imports = [
+    ./modules/hyprland/hyprland.nix
+    inputs.catppuccin.homeModules.catppuccin
+  ];
+
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";  # Always specify flavor
+    kitty.enable = true;
+  };
 
   home.username = "lee";
   home.homeDirectory = "/home/lee";
@@ -19,9 +26,6 @@
   ];
 
   /*
-  home.packages = with pkgs; [
-    protonup
-  ];
  
   home.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
@@ -32,7 +36,6 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-
   programs.kitty = {
     enable = true;
     settings = {
@@ -42,6 +45,5 @@
       confirm_os_window_close = 0;
     };
   };
-
   programs.home-manager.enable = true;
 }

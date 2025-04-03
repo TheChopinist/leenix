@@ -2,9 +2,12 @@
 
 {
 
-  home.packages = with pkgs; [ waybar ];
+  programs.waybar = {
+    enable = true;
+    # Additional Waybar configuration can go here
+  };
 
-  services.waybar.enable = true;
+  home.packages = with pkgs; [ waybar ];
 
   wayland.windowManager.hyprland = {
     enable = true;

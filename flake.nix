@@ -33,11 +33,16 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations.leenix = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = { inherit inputs; };
       modules = [
         ./nixos/configuration.nix
         inputs.home-manager.nixosModules.default

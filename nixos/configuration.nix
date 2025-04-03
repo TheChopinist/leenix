@@ -4,6 +4,9 @@
   inputs,
   ...
 }: {
+
+  system.stateVersion = "25.05";
+
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -55,6 +58,9 @@
     hyprpaper
 
     mangohud
+
+    tty-clock
+    cbonsai
   ];
 
   fonts.fontconfig.defaultFonts.monospace = ["Fira Code"];
