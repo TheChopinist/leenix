@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+
+  home.packages = with pkgs; [ waybar ];
+
+  services.waybar.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;

@@ -49,7 +49,7 @@
     btop
     nodejs
 
-    waybar
+    # waybar
     wofi
     dunst
     hyprpaper
