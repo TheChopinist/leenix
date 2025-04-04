@@ -2,13 +2,6 @@
 
 {
 
-  programs.waybar = {
-    enable = true;
-    # Additional Waybar configuration can go here
-  };
-
-  home.packages = with pkgs; [ waybar ];
-
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -16,6 +9,7 @@
     settings = {
       monitor="DP-1,3440x1440@144,0x0,1.25";
 
+      exec-once = "waybar";
 
       env = [
         "XCURSOR_SIZE,24"
@@ -26,8 +20,6 @@
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        col.active_border = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        col.inactive_border = "rgba(595959aa)";
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
@@ -99,16 +91,9 @@
       input = {
         kb_layout = "ch";
         follow_mouse = 1;
-        sensitivity = 0;
+        sensitivity = -0.5;
 
         touchpad.natural_scroll = false;
-
-        devices = [
-          {
-            name = "epic-mouse-v1";
-            sensitivity = -0.5;
-          }
-        ];
       };
 
       gestures.workspace_swipe = false;

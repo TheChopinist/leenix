@@ -46,5 +46,36 @@
       hide_window_decorations = true;
     };
   };
+
+  programs.waybar = {
+    enable = true;
+    settings = [
+      {
+        layer = "top";
+        position = "top";
+        height = 40;
+        modules-left = [];
+        modules-center = [];
+        modules-right = ["clock"];
+      }
+    ];
+    style = ''
+      * {
+        font-family: monospace;
+      }
+
+      #waybar {
+        padding: 10px;
+        margin: 10px;
+        background: #16191C;
+        color: #AAB2BF;
+      }
+
+      #clock {
+        padding: 5px;
+        margin: 5px;
+      }
+    '';
+  };
   programs.home-manager.enable = true;
 }

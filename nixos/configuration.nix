@@ -52,7 +52,12 @@
     btop
     nodejs
 
-    # waybar
+    waybar
+
+    # waybarshit
+    # xdg-desktop-portal
+    # xdg-desktop-portal-wlr
+
     wofi
     dunst
     hyprpaper
