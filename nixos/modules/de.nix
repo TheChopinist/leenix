@@ -2,8 +2,19 @@
 
 {
 
-  # Plasma
   services.displayManager.ly.enable = true;
+
+  # XFCE
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce.enable = true;
+    };
+  };
+  services.displayManager.defaultSession = "xfce";
+
+  # Plasma
   services.desktopManager.plasma6.enable = true;
 
   systemd.user.services.kwalletd.enable = false;
@@ -25,6 +36,9 @@
   */
 
   # Hyprland
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
 }

@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./applications/default.nix
+    ./easyeffects/default.nix
   ];
 }

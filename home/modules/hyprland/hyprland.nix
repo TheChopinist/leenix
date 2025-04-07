@@ -2,6 +2,10 @@
 
 {
 
+  home.sessionVariables = {
+     NIXOS_OZONE_WL = "1";
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -9,7 +13,12 @@
     settings = {
       monitor="DP-1,3440x1440@144,0x0,1.25";
 
-      exec-once = "waybar";
+
+      exec-once = [
+        "waybar"
+        "dunst"
+        "easyeffects"
+      ];
 
       env = [
         "XCURSOR_SIZE,24"

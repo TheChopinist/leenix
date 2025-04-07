@@ -1,15 +1,17 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports = [
     ./modules/hyprland/hyprland.nix
+    # ./modules/default.nix
     inputs.catppuccin.homeModules.catppuccin
   ];
 
   catppuccin = {
     enable = true;
-    flavor = "mocha";  # Always specify flavor
+    flavor = "frappe";  # Always specify flavor
     kitty.enable = true;
+    waybar.enable = true;
   };
 
   home.username = "lee";
@@ -50,32 +52,30 @@
   programs.waybar = {
     enable = true;
     settings = [
-      {
-        layer = "top";
-        position = "top";
-        height = 40;
-        modules-left = [];
-        modules-center = [];
-        modules-right = ["clock"];
-      }
-    ];
-    style = ''
-      * {
-        font-family: monospace;
-      }
-
-      #waybar {
-        padding: 10px;
+    {
+      layer = "top";
+      position = "top";
+      height = 30;
+      modules-left = ["hyprland/workspaces"];
+      modules-center = ["clock"];
+      modules-right = ["cpu"];
+      cpu = {
+        format = "{usage}%";
+      };
+    }
+  ];
+  style = ''
+      #waybar > * {
         margin: 10px;
-        background: #16191C;
-        color: #AAB2BF;
       }
-
-      #clock {
-        padding: 5px;
-        margin: 5px;
+      #waybar {
+        margin: 10px;
+        /* background: #16191C;
+        color: #AAB2BF; */
       }
+      
     '';
   };
+  
   programs.home-manager.enable = true;
 }

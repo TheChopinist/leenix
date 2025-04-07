@@ -7,6 +7,20 @@
         efi.canTouchEfiVariables = true;
     };
 
+    /*boot.loader = {
+        efi = {
+            canTouchEfiVariables = true;
+            efiSysMountPoint = "/boot";  # Adjust if your EFI partition differs
+        };
+        grub = {
+            enable = true;
+            efiSupport = true;
+            devices = [ "nodev" ];       # Required for UEFI installations
+            useOSProber = true;          # For detecting other OSes like Windows
+        };
+    };*/
+
+
     networking.hostName = "leenux";
     time.timeZone = "Europe/Zurich";
 

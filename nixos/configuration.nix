@@ -30,6 +30,9 @@
   # dont have sudo rn? !!!! REMOVE ON NEW PC SINCE I MESSED UP HERE ONCE
   security.sudo.enable = true;
 
+  # temp for hyprland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # ============================
   #         APPLICATIONS
   # ============================
@@ -53,10 +56,6 @@
     nodejs
 
     waybar
-
-    # waybarshit
-    # xdg-desktop-portal
-    # xdg-desktop-portal-wlr
 
     wofi
     dunst
