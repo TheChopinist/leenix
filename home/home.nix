@@ -45,7 +45,7 @@
 
   programs.spicetify = {
     enable = true;
-    theme = {
+    /* theme = {
       name = "catppuccin";
       variant = "mocha";
       colorScheme = "flamingo";  # Accent color
@@ -55,7 +55,7 @@
       "shuffle" 
       "hidePodcasts"
       "adblock"
-    ];
+    ]; */
   };
   
   home.packages = [ pkgs.spotify ];
