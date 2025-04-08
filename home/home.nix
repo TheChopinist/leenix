@@ -55,10 +55,10 @@
       "shuffle" 
       "hidePodcasts"
       "adblock"
-    ]; */
+    ];*/
   };
-  
-  home.packages = [ pkgs.spotify ];
+
+#  home.packages = [ pkgs.example ];
 
   programs.waybar = {
     enable = true;
