@@ -5,7 +5,7 @@
     ./modules/hyprland/hyprland.nix
     # ./modules/default.nix
     inputs.catppuccin.homeModules.catppuccin
-    inputs.spicetify-nix.homeManagerModules.spicetify
+    inputs.spicetify.homeManagerModules.default
   ];
 
   catppuccin = {
@@ -19,14 +19,6 @@
   home.homeDirectory = "/home/lee";
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
-
-  home.packages = with pkgs; [
-    # pkgs.hello
-
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
 
   /*
  
@@ -66,7 +58,7 @@
     ];
   };
   
-  home.packages = [ pkgs.spotify ]; # Install via Home Manager
+  home.packages = [ pkgs.spotify ];
 
   programs.waybar = {
     enable = true;

@@ -45,14 +45,20 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, spicetify, ... }@inputs: {
     nixosConfigurations.leenix = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         ./nixos/configuration.nix
-        
-        inputs.home-manager.nixosModules.default
-        inputs.spicetify.homeManagerModules.default
+
+        home-manager.nixosModules.home-manager {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = { inherit inputs; };
+            users.lee = import ./home/home.nix;
+          };
+        }
       ];
     };
   };
