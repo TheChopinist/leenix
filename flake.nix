@@ -38,6 +38,11 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -45,7 +50,9 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
       specialArgs = { inherit inputs; };
       modules = [
         ./nixos/configuration.nix
+        
         inputs.home-manager.nixosModules.default
+        inputs.spicetify.homeManagerModules.default
       ];
     };
   };

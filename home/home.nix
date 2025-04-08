@@ -5,6 +5,7 @@
     ./modules/hyprland/hyprland.nix
     # ./modules/default.nix
     inputs.catppuccin.homeModules.catppuccin
+    inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
   catppuccin = {
@@ -38,6 +39,7 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+
   programs.kitty = {
     enable = true;
     settings = {
@@ -48,6 +50,23 @@
       hide_window_decorations = true;
     };
   };
+
+  programs.spicetify = {
+    enable = true;
+    theme = {
+      name = "catppuccin";
+      variant = "mocha";
+      colorScheme = "flamingo";  # Accent color
+    };
+    enabledExtensions = with pkgs.spicetify-extensions; [
+      "fullAppDisplay"
+      "shuffle" 
+      "hidePodcasts"
+      "adblock"
+    ];
+  };
+  
+  home.packages = [ pkgs.spotify ]; # Install via Home Manager
 
   programs.waybar = {
     enable = true;
