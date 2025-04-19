@@ -3,7 +3,7 @@
 {
   imports = [
     ./modules/hyprland/hyprland.nix
-    # ./modules/default.nix
+    ./modules/default.nix
     inputs.catppuccin.homeModules.catppuccin
     inputs.spicetify.homeManagerModules.default
   ];
@@ -43,22 +43,24 @@
     };
   };
 
-  programs.spicetify = {
+  programs.spicetify = let
+    spicetify = inputs.spicetify.legacyPackages.${pkgs.system};
+  in {
     enable = true;
-    /* theme = {
-      name = "catppuccin";
-      variant = "mocha";
-      colorScheme = "flamingo";  # Accent color
-    };
-    enabledExtensions = with pkgs.spicetify-extensions; [
-      "fullAppDisplay"
-      "shuffle" 
-      "hidePodcasts"
-      "adblock"
-    ];*/
+    enabledExtensions = with spicetify.extensions; [
+      adblock
+      hidePodcasts
+      shuffle
+    ];
+    enabledCustomApps = with spicetify.apps; [
+      newReleases
+      ncsVisualizer
+    ];
+    theme = spicetify.themes.catppuccin;
+    colorScheme = "mocha";
   };
 
-#  home.packages = [ pkgs.example ];
+  #  home.packages = [ pkgs.example ];
 
   programs.waybar = {
     enable = true;

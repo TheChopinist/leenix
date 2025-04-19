@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./easyeffects/default.nix
+    ./wofi/default.nix
   ];
 }
