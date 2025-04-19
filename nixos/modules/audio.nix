@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Audio configuration
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;

@@ -1,21 +1,21 @@
-{ config, pkgs, ... }:
-
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   home.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
-      GBM_BACKEND = "nvidia-drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
-    
-    settings = {
-      monitor="DP-1,3440x1440@144,0x0,1.25";
 
+    settings = {
+      monitor = "DP-1,3440x1440@144,0x0,1.25";
 
       exec-once = [
         "waybar"
@@ -41,7 +41,7 @@
         rounding = 10;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
-        
+
         shadow = {
           enabled = true;
           range = 4;
@@ -59,7 +59,7 @@
 
       animations = {
         enabled = true;
-        
+
         bezier = [
           "easeOutQuint,0.23,1,0.32,1"
           "easeInOutCubic,0.65,0.05,0.36,1"

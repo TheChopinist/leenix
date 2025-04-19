@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
-
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   services.displayManager.ly.enable = true;
 
   # XFCE
@@ -31,8 +32,8 @@
   ];
 
   /*
-    gwenview
-    oxygen
+  gwenview
+  oxygen
   */
 
   # Hyprland
@@ -41,7 +42,7 @@
     xwayland.enable = true;
   };
 
-    # temp for hyprland
+  # temp for hyprland
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
@@ -55,11 +56,12 @@
 
     # Discord with GPU compositing disabled
     (discord.overrideAttrs (oldAttrs: {
-      installPhase = oldAttrs.installPhase + ''
-        wrapProgram $out/bin/Discord \
-          --add-flags "--disable-gpu-compositing"
-      '';
+      installPhase =
+        oldAttrs.installPhase
+        + ''
+          wrapProgram $out/bin/Discord \
+            --add-flags "--disable-gpu-compositing"
+        '';
     }))
   ];
-
 }

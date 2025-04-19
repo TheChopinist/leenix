@@ -4,7 +4,6 @@
   inputs,
   ...
 }: {
-
   system.stateVersion = "25.05";
 
   imports = [
@@ -21,7 +20,7 @@
   # ============================
   #         TEMPORARY
   # ============================
-  
+
   # No reaction in hyprland
   boot.kernelParams = [
     "initcall_blacklist=simpledrm_platform_driver_init"
@@ -77,7 +76,7 @@
     localNetworkGameTransfers.openFirewall = true;
     extraCompatPackages = [pkgs.proton-ge-bin];
   };
- 
+
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
   };

@@ -1,6 +1,10 @@
-{ config, pkgs, inputs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     ./modules/hyprland/hyprland.nix
     ./modules/default.nix
@@ -10,7 +14,7 @@
 
   catppuccin = {
     enable = true;
-    flavor = "frappe";  # Always specify flavor
+    flavor = "frappe"; # Always specify flavor
     kitty.enable = true;
     waybar.enable = true;
   };
@@ -21,7 +25,7 @@
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
   /*
- 
+
   home.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
       ”\\\${HOME}/.steam/root/compatibilitytools.d”;
@@ -50,6 +54,6 @@
   };
 
   #  home.packages = [ pkgs.example ];
-  
+
   programs.home-manager.enable = true;
 }

@@ -21,12 +21,13 @@ Package Search: https://search.nixos.org/
 Text Generator: https://www.fancytextpro.com/BigTextGenerator
 Tutorials used: https://youtu.be/a67Sv4Mbxmc
 */
-
 {
   description = "Leenix";
 
   inputs = {
-    /* nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05"; */
+    /*
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    */
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -45,17 +46,24 @@ Tutorials used: https://youtu.be/a67Sv4Mbxmc
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, spicetify, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    spicetify,
+    ...
+  } @ inputs: {
     nixosConfigurations.leenix = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
       modules = [
         ./nixos/configuration.nix
 
-        home-manager.nixosModules.home-manager {
+        home-manager.nixosModules.home-manager
+        {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = { inherit inputs; };
+            extraSpecialArgs = {inherit inputs;};
             users.lee = import ./home/home.nix;
           };
         }
