@@ -50,6 +50,7 @@
     cava
     btop
     nodejs
+    alejandra
 
     waybar
 
