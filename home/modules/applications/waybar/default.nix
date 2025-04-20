@@ -2,16 +2,17 @@
   programs.waybar = {
     enable = true;
 
-    settings = [
-      {
+    settings = {
+      mainBar = {
         layer = "top";
         position = "top";
-        height = 24;
-        spacing = 4;
+        height = 36;
+        margin = "6px 8px 6px 8px";
+        spacing = 0;
 
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock"];
-        modules-right = ["cpu" "custom/reboot" "custom/shutdown"];
+        modules-right = ["tray" "custom/reboot" "custom/shutdown"];
 
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -27,77 +28,84 @@
             "9" = "九";
             "10" = "十";
           };
-          active-only = false;
-          all-outputs = true;
         };
 
         clock = {
           format = "{:%H:%M}";
-          tooltip-format = "{:%A, %d %B %Y}";
         };
 
-        cpu = {
-          format = "{usage}%";
-          interval = 1;
-        };
-
-        "custom/shutdown" = {
-          format = "⏻";
-          tooltip = false;
-          on-click = ''
-            dunstify -u critical -t 60000 "Shutdown Initiated" "System will shutdown in 60 seconds" &&
-            shutdown -P +1
-          '';
+        tray = {
+          spacing = 6;
         };
 
         "custom/reboot" = {
           format = "↻";
-          tooltip = false;
-          on-click = ''
-            dunstify -u critical -t 60000 "Reboot Initiated" "System will reboot in 60 seconds" &&
-            shutdown -r +1
-          '';
+          on-click = "reboot";
         };
-      }
-    ];
+
+        "custom/shutdown" = {
+          format = "⏻";
+          on-click = "shutdown now";
+        };
+      };
+    };
 
     style = ''
       * {
         font-family: sans-serif;
-        font-size: 13px;
+        font-size: 14px;
         min-height: 0;
         padding: 0;
         margin: 0;
+        border: none;
       }
 
       window#waybar {
-        background-color: rgba(23, 23, 23, 0.9);
+        background-color: rgba(46, 52, 64, 0.9);
+        border-radius: 12px;
+      }
+
+      #workspaces {
+        padding: 0 6px;
       }
 
       #workspaces button {
-        padding: 0 8px;
-        color: #777777;
-      }
-
-      #workspaces button.visible {
-        color: #bbbbbb;
+        padding: 0 10px;
+        color: #d8dee9;
+        background: transparent;
+        border-radius: 8px;
       }
 
       #workspaces button.active {
-        color: #ffffff;
+        color: #88c0d0;
+        background: rgba(136, 192, 208, 0.2);
       }
 
-      #clock, #cpu, #custom-shutdown, #custom-reboot {
-        color: #cccccc;
-        padding: 0 10px;
+      #clock {
+        color: #eceff4;
+        padding: 0 16px;
       }
 
-      #custom-shutdown:hover {
-        color: #ff5555;
+      #tray {
+        padding: 0 8px;
+        margin-right: 4px;
+      }
+
+      #custom-reboot, #custom-shutdown {
+        color: #d8dee9;
+        padding: 0 16px;
+        background: transparent;
+        transition: background 0.2s ease;
       }
 
       #custom-reboot:hover {
-        color: #55aaff;
+        color: #88c0d0;
+        background: rgba(136, 192, 208, 0.2);
+      }
+
+      #custom-shutdown:hover {
+        color: #bf616a;
+        background: rgba(191, 97, 106, 0.2);
       }
     '';
   };
