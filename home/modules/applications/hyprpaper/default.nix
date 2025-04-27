@@ -4,15 +4,12 @@
   config,
   ...
 }: let
-  # Convert relative path to absolute using builtins.path
-  wallpapersDir = builtins.path {
+  wallpapersStorePath = builtins.path {
     path = ./wallpapers;
     name = "hyprpaper-wallpapers";
   };
 
-  # Modified script using absolute paths
   wallpaperScript = pkgs.writeShellScriptBin "hyprpaper-randomizer" ''
-    # Use copied wallpapers from ~/.wallpapers
     WALLPAPER_DIR="${config.home.homeDirectory}/.wallpapers"
     MONITORS=($(hyprctl monitors | grep -oP 'Monitor \K\S+'))
     SELECTED_WALL=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
@@ -24,13 +21,11 @@
     done
   '';
 in {
-  # Deploy wallpapers to ~/.wallpapers
   home.file.".wallpapers" = {
-    source = wallpapersDir;
+    source = wallpapersStorePath;
     recursive = true;
   };
 
-  # Minimal hyprpaper config
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -39,25 +34,13 @@ in {
     };
   };
 
-  # Systemd services (unchanged)
-  systemd.user = {
-    services.wallpaper-randomizer = {
-      Unit = {
-        Description = "Random wallpaper rotation";
-        After = ["graphical-session.target"];
-      };
-      Service = {
-        Type = "oneshot";
-        ExecStart = "${wallpaperScript}/bin/hyprpaper-randomizer";
-      };
-    };
-    timers.wallpaper-randomizer = {
-      Unit.Description = "Hourly wallpaper rotation";
-      Timer = {
-        OnUnitActiveSec = "1h";
-        OnBootSec = "5s";
-      };
-      Install.WantedBy = ["timers.target"];
-    };
+  systemd.user.services.wallpaper-randomizer = {
+    Unit.After = ["graphical-session.target"];
+    Service.ExecStart = "${wallpaperScript}/bin/hyprpaper-randomizer";
+  };
+
+  systemd.user.timers.wallpaper-randomizer = {
+    Timer.OnUnitActiveSec = "1h";
+    Install.WantedBy = ["timers.target"];
   };
 }
