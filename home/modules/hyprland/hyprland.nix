@@ -115,6 +115,7 @@
         "SUPER, C, killactive"
         "SUPER, M, exit"
         "SUPER, E, exec, dolphin"
+        "SUPER, F, fullscreen"
         "SUPER, V, togglefloating"
         "SUPER, R, exec, wofi --show drun"
         "SUPER, P, pseudo"
@@ -123,6 +124,19 @@
         "SUPER, right, movefocus, r"
         "SUPER, up, movefocus, u"
         "SUPER, down, movefocus, d"
+
+        # Vim-style movement
+        "SUPER SHIFT, H, movewindow, l"
+        "SUPER SHIFT, L, movewindow, r"
+        "SUPER SHIFT, K, movewindow, u"
+        "SUPER SHIFT, J, movewindow, d"
+
+        # Arrow keys movement
+        "SUPER SHIFT, left, movewindow, l"
+        "SUPER SHIFT, right, movewindow, r"
+        "SUPER SHIFT, up, movewindow, u"
+        "SUPER SHIFT, down, movewindow, d"
+
         "SUPER, 1, workspace, 1"
         "SUPER, 2, workspace, 2"
         "SUPER, 3, workspace, 3"
