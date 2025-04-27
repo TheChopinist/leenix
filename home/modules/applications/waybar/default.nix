@@ -12,7 +12,7 @@
 
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock"];
-        modules-right = ["tray" "custom/reboot" "custom/shutdown"];
+        modules-right = ["tray" "custom/wallpaper" "custom/reboot" "custom/shutdown"];
 
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -36,6 +36,12 @@
 
         tray = {
           spacing = 6;
+        };
+
+        "custom/wallpaper" = {
+          format = "🎨";
+          tooltip = false;
+          on-click = "${pkgs.hyprpaper}/bin/hyprpaper-random";
         };
 
         "custom/reboot" = {
@@ -91,11 +97,16 @@
         margin-right: 4px;
       }
 
-      #custom-reboot, #custom-shutdown {
+      #custom-wallpaper, #custom-reboot, #custom-shutdown {
         color: #d8dee9;
         padding: 0 16px;
         background: transparent;
         transition: background 0.2s ease;
+      }
+
+      #custom-wallpaper:hover {
+        color: #a3be8c;
+        background: rgba(163, 190, 140, 0.2);
       }
 
       #custom-reboot:hover {
