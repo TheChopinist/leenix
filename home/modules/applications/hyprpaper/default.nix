@@ -21,10 +21,7 @@
     done
   '';
 in {
-  home.file.".wallpapers" = {
-    source = wallpapersStorePath;
-    recursive = true;
-  };
+  home.file.".wallpapers".source = wallpapersStorePath;
 
   services.hyprpaper = {
     enable = true;
