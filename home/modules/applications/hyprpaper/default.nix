@@ -12,15 +12,18 @@
 
   # Script to randomly select and set a wallpaper
   randomWallpaperScript = pkgs.writeShellScriptBin "hyprpaper-random" ''
+    #!/usr/bin/env bash
     WALLPAPERS=(${toString wallpapers}/*)
     SELECTED_WALL=''${WALLPAPERS[$RANDOM % ''${#WALLPAPERS[@]}]}
-
     hyprctl hyprpaper unload all
     hyprctl hyprpaper preload "$SELECTED_WALL"
     hyprctl hyprpaper wallpaper ",''${SELECTED_WALL}"
   '';
 in {
-  # Systemd service to run at startup and periodically
+  # Make the script available system-wide
+  home.packages = [randomWallpaperScript];
+
+  # Systemd service for automatic wallpaper rotation
   systemd.user.services.hyprpaper-random = {
     Unit = {
       Description = "Random Hyprpaper Wallpaper";

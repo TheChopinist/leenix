@@ -41,7 +41,7 @@
         "custom/wallpaper" = {
           format = "🎨";
           tooltip = false;
-          on-click = "${pkgs.hyprpaper}/bin/hyprpaper-random";
+          on-click = "hyprpaper-random";
         };
 
         "custom/reboot" = {
