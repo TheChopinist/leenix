@@ -4,11 +4,6 @@
   config,
   ...
 }: let
-  wallpapersStorePath = builtins.path {
-    path = ./wallpapers;
-    name = "hyprpaper-wallpapers";
-  };
-
   wallpaperScript = pkgs.writeShellScriptBin "hyprpaper-randomizer" ''
     WALLPAPER_DIR="${config.home.homeDirectory}/.wallpapers"
     MONITORS=($(hyprctl monitors | grep -oP 'Monitor \K\S+'))
@@ -21,7 +16,8 @@
     done
   '';
 in {
-  home.file.".wallpapers".source = wallpapersStorePath;
+  # Directly reference the wallpapers directory relative to the flake
+  home.file.".wallpapers".source = ./wallpapers;
 
   services.hyprpaper = {
     enable = true;
