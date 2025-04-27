@@ -18,6 +18,7 @@
       monitor = "DP-1,3440x1440@144,0x0,1.25";
 
       exec-once = [
+        "hyprpaper"
         "waybar"
         "dunst"
         "easyeffects"
@@ -96,8 +97,8 @@
       master.new_status = "master";
 
       misc = {
-        force_default_wallpaper = -1;
-        disable_hyprland_logo = false;
+        # force_default_wallpaper = -1;
+        disable_hyprland_logo = true;
       };
 
       input = {
