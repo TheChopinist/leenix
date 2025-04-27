@@ -1,14 +1,19 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
-  # Path to your wallpapers (relative to this Nix file)
-  wallpapersDir = ./wallpapers;
+  # Convert relative path to absolute using builtins.path
+  wallpapersDir = builtins.path {
+    path = ./wallpapers;
+    name = "hyprpaper-wallpapers";
+  };
 
-  # Generate randomizer script
+  # Modified script using absolute paths
   wallpaperScript = pkgs.writeShellScriptBin "hyprpaper-randomizer" ''
-    WALLPAPER_DIR="${wallpapersDir}"
+    # Use copied wallpapers from ~/.wallpapers
+    WALLPAPER_DIR="${config.home.homeDirectory}/.wallpapers"
     MONITORS=($(hyprctl monitors | grep -oP 'Monitor \K\S+'))
     SELECTED_WALL=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
 
@@ -25,7 +30,7 @@ in {
     recursive = true;
   };
 
-  # Configure hyprpaper
+  # Minimal hyprpaper config
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -34,7 +39,7 @@ in {
     };
   };
 
-  # Auto-randomize on login and hourly
+  # Systemd services (unchanged)
   systemd.user = {
     services.wallpaper-randomizer = {
       Unit = {
@@ -55,9 +60,4 @@ in {
       Install.WantedBy = ["timers.target"];
     };
   };
-
-  # Keybind example (add to Hyprland config)
-  #wayland.windowManager.hyprland.settings.bind = [
-  #  "SUPER, W, exec, ${wallpaperScript}/bin/hyprpaper-randomizer"
-  #];
 }
