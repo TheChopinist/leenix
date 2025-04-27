@@ -83,13 +83,19 @@
 
   programs.gamemode.enable = true;
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = ''
+        --delete-older-than 7d
+        --keep-last 10
+        --keep-outputs
+        --keep-derivations
+      '';
+    };
+    settings.auto-optimise-store = true;
   };
-
-  nix.settings.auto-optimise-store = true;
 
   users.users.lee = {
     isNormalUser = true;
