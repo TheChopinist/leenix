@@ -23,7 +23,7 @@
   };
   */
 
-  networking.hostName = "leenux";
+  networking.hostName = "leenix";
   time.timeZone = "Europe/Zurich";
 
   # ============================
