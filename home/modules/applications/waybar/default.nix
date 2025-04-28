@@ -6,8 +6,8 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 36;
-        margin = "6px 8px 6px 8px";
+        height = 34;
+        margin = "5px 5px 0 5px";
         spacing = 0;
 
         modules-left = ["hyprland/workspaces"];
@@ -35,7 +35,7 @@
         };
 
         tray = {
-          spacing = 6;
+          spacing = 4;
         };
 
         "custom/wallpaper" = {
@@ -59,64 +59,46 @@
     style = ''
       * {
         font-family: sans-serif;
-        font-size: 14px;
+        font-size: 13px;
         min-height: 0;
-        padding: 0;
-        margin: 0;
-        border: none;
       }
 
       window#waybar {
-        background-color: rgba(46, 52, 64, 0.7);
-        border-radius: 12px;
-      }
-
-      #workspaces {
-        padding: 0 6px;
+        background-color: rgba(40, 42, 54, 0.9);
       }
 
       #workspaces button {
-        padding: 0 10px;
-        color: #d8dee9;
-        background: transparent;
-        border-radius: 8px;
+        padding: 0 8px;
+        color: #f8f8f2;
       }
 
       #workspaces button.active {
-        color: #88c0d0;
-        background: rgba(136, 192, 208, 0.2);
+        color: #50fa7b;
       }
 
       #clock {
-        color: #eceff4;
-        padding: 0 16px;
+        color: #f8f8f2;
+        padding: 0 10px;
       }
 
       #tray {
-        padding: 0 8px;
-        margin-right: 4px;
+        padding: 0 6px;
       }
 
       #custom-wallpaper, #custom-reboot, #custom-shutdown {
-        color: #d8dee9;
-        padding: 0 16px;
-        background: transparent;
-        transition: background 0.2s ease;
+        padding: 0 8px;
       }
 
       #custom-wallpaper:hover {
-        color: #a3be8c;
-        background: rgba(163, 190, 140, 0.2);
+        color: #ffb86c;
       }
 
       #custom-reboot:hover {
-        color: #88c0d0;
-        background: rgba(136, 192, 208, 0.2);
+        color: #8be9fd;
       }
 
       #custom-shutdown:hover {
-        color: #bf616a;
-        background: rgba(191, 97, 106, 0.2);
+        color: #ff5555;
       }
     '';
   };
