@@ -30,32 +30,38 @@
       ];
 
       general = {
-        gaps_in = 3; # Reduced from 5 for tighter spacing
-        gaps_out = 10; # Reduced from 20 for compact modern look
-        border_size = 1; # Thinner borders for minimalism
-        resize_on_border = true; # Enable border resizing for better UX
+        gaps_in = 2;
+        gaps_out = 8;
+        border_size = 1;
+        resize_on_border = true;
         allow_tearing = false;
         layout = "dwindle";
+
+        # Simple dark borders
+        "col.active_border" = "rgba(2A2A2AEE)"; # Pure dark gray
+        "col.inactive_border" = "rgba(3A3A3A99)"; # Slightly lighter with transparency
       };
 
       decoration = {
-        rounding = 5; # Smaller radius for contemporary feel
+        rounding = 4;
         active_opacity = 1.0;
-        inactive_opacity = 0.95; # Slight fade for inactive windows
+        inactive_opacity = 0.9;
 
         shadow = {
           enabled = true;
-          range = 6; # More subtle shadow spread
+          range = 4;
           render_power = 3;
-          color = "rgba(0A0A0A77)"; # Lighter shadow with transparency
+          color = "rgba(1A1A1A55)";
         };
 
         blur = {
           enabled = true;
-          size = 2; # More subtle blur
-          passes = 2; # Smoother blur quality
-          vibrancy = 0.1; # Reduced vibrancy for cleaner look
-          contrast = 1.1; # Added contrast for clarity
+          size = 3;
+          passes = 3;
+          noise = 0.02;
+          contrast = 1.1;
+          vibrancy = 0.1;
+          new_optimizations = true;
         };
       };
 

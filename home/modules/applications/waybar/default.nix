@@ -64,41 +64,75 @@
       }
 
       window#waybar {
-        background-color: rgba(40, 42, 54, 0.9);
+        background-color: rgba(42, 42, 42, 0.9);
+        border-bottom: 1px solid rgba(58, 58, 58, 0.6);
+        border-radius: 4px;
       }
 
       #workspaces button {
         padding: 0 8px;
-        color: #f8f8f2;
+        color: rgba(248, 248, 242, 0.8);
+        background-color: transparent;
+        border-radius: 4px;
+        margin: 4px 2px;
       }
 
       #workspaces button.active {
-        color: #50fa7b;
+        color: rgba(80, 250, 123, 0.9);
+        background-color: rgba(58, 58, 58, 0.4);
+      }
+
+      #workspaces button:hover {
+        background-color: rgba(58, 58, 58, 0.6);
       }
 
       #clock {
-        color: #f8f8f2;
+        color: rgba(248, 248, 242, 0.9);
         padding: 0 10px;
+        background-color: rgba(58, 58, 58, 0.3);
+        border-radius: 4px;
+        margin: 4px 2px;
       }
 
       #tray {
         padding: 0 6px;
+        background-color: rgba(58, 58, 58, 0.3);
+        border-radius: 4px;
+        margin: 4px 2px;
       }
 
       #custom-wallpaper, #custom-reboot, #custom-shutdown {
         padding: 0 8px;
+        background-color: rgba(58, 58, 58, 0.3);
+        border-radius: 4px;
+        margin: 4px 2px;
+      }
+
+      #custom-wallpaper {
+        color: rgba(248, 248, 242, 0.8);
+      }
+
+      #custom-reboot {
+        color: rgba(248, 248, 242, 0.8);
+      }
+
+      #custom-shutdown {
+        color: rgba(248, 248, 242, 0.8);
       }
 
       #custom-wallpaper:hover {
         color: #ffb86c;
+        background-color: rgba(58, 58, 58, 0.6);
       }
 
       #custom-reboot:hover {
         color: #8be9fd;
+        background-color: rgba(58, 58, 58, 0.6);
       }
 
       #custom-shutdown:hover {
         color: #ff5555;
+        background-color: rgba(58, 58, 58, 0.6);
       }
     '';
   };
