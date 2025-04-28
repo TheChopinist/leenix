@@ -83,19 +83,16 @@
 
   programs.gamemode.enable = true;
 
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = ''
-        --delete-older-than 7d
-        --keep-last 10
-        --keep-outputs
-        --keep-derivations
-      '';
-    };
-    settings.auto-optimise-store = true;
+  /*
+    systemd.services.nix-gc-on-shutdown = {
+    description = "Run Nix GC before shutdown";
+    wantedBy = ["shutdown.target"];
+    script = "nix-collect-garbage --delete-old --keep 10";
+    serviceConfig.Type = "oneshot";
   };
+  */
+
+  nix.settings.auto-optimise-store = true;
 
   users.users.lee = {
     isNormalUser = true;
