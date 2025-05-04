@@ -14,7 +14,7 @@
 
   catppuccin = {
     enable = true;
-    flavor = "frappe"; # Always specify flavor
+    flavor = "frappe"; # latte frappe macchiato mocha
     kitty.enable = true;
     waybar.enable = true;
   };
@@ -76,7 +76,7 @@
       ncsVisualizer
     ];
     theme = spicetify.themes.catppuccin;
-    colorScheme = "mocha";
+    colorScheme = "frappe";
   };
 
   #  home.packages = [ pkgs.example ];

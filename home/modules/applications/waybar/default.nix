@@ -44,14 +44,13 @@
           on-click = "hyprpaper-random";
         };
 
-        "custom/reboot" = {
-          format = "↻";
-          on-click = "reboot";
-        };
-
         "custom/shutdown" = {
           format = "⏻";
-          on-click = "shutdown now";
+          on-click = ''sh -c 'wofi --yesno "Shutdown?" && systemctl poweroff' '';
+        };
+        "custom/reboot" = {
+          format = "↻";
+          on-click = ''sh -c 'wofi --yesno "Reboot?" && systemctl reboot' '';
         };
       };
     };

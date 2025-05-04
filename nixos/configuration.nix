@@ -50,6 +50,7 @@
     btop
     nodejs
     alejandra
+    ranger
 
     waybar
 

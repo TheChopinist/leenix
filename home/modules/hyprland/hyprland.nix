@@ -21,7 +21,8 @@
         "hyprpaper"
         "waybar"
         "dunst"
-        "easyeffects"
+        "easyeffects --gapplication-service"
+        "sleep 1 && hyprpaper-random"
       ];
 
       env = [
@@ -44,8 +45,8 @@
 
       decoration = {
         rounding = 4;
-        active_opacity = 1.0;
-        inactive_opacity = 0.9;
+        active_opacity = 0.95;
+        inactive_opacity = 0.95;
 
         shadow = {
           enabled = true;
@@ -122,7 +123,7 @@
         "SUPER, Q, exec, kitty"
         "SUPER, C, killactive"
         "SUPER, M, exit"
-        "SUPER, E, exec, dolphin"
+        "SUPER, E, exec, kitty -e ranger"
         "SUPER, F, fullscreen"
         "SUPER, V, togglefloating"
         "SUPER, R, exec, wofi --show drun"
