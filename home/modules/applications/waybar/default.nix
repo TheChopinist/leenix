@@ -44,14 +44,26 @@
           on-click = "hyprpaper-random";
         };
 
-        "custom/shutdown" = {
-          format = "⏻";
-          on-click = ''sh -c 'wofi --yesno "Shutdown?" && systemctl poweroff' '';
-        };
         "custom/reboot" = {
           format = "↻";
-          on-click = ''sh -c 'wofi --yesno "Reboot?" && systemctl reboot' '';
+          on-click = ''sh -c 'echo -e "yes\nno" | wofi --dmenu --prompt="Reboot?" --width=400 --height=200 | grep -q "yes" && systemctl reboot' '';
         };
+        "custom/shutdown" = {
+          format = "⏻";
+          on-click = ''sh -c 'echo -e "yes\nno" | wofi --dmenu --prompt="Shutdown?" --width=400 --height=200 | grep -q "yes" && systemctl poweroff' '';
+        };
+
+        /*
+          "custom/reboot" = {
+          format = "↻";
+          on-click = "systemctl reboot";
+        };
+
+        "custom/shutdown" = {
+          format = "⏻";
+          on-click = "systemctl poweroff";
+        };
+        */
       };
     };
 
