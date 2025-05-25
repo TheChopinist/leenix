@@ -35,11 +35,14 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    librewolf
     fira-code
     fastfetch
-    discord
     git
+    nodejs
+    alejandra
+
+    librewolf
+    discord
     vulkan-loader
     protonup
     kitty
@@ -48,9 +51,8 @@
     cmatrix
     cava
     btop
-    nodejs
-    alejandra
     ranger
+    lutris
 
     waybar
 
