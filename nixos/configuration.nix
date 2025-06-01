@@ -42,7 +42,11 @@
     alejandra
 
     librewolf
-    discord
+    brave
+    (discord.override {
+      withOpenASAR = true;
+      # withVencord = true;
+    })
     vulkan-loader
     protonup
     kitty
@@ -53,6 +57,7 @@
     btop
     ranger
     lutris
+    rmpc
 
     waybar
 
@@ -61,6 +66,7 @@
     hyprpaper
 
     mangohud
+    gamescope
 
     tty-clock
     cbonsai
