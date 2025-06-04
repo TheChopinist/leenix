@@ -14,7 +14,7 @@
 
   catppuccin = {
     enable = true;
-    flavor = "frappe"; # latte frappe macchiato mocha
+    flavor = "frappe"; # latte, frappe, macchiato, mocha
     kitty.enable = true;
     waybar.enable = true;
   };
@@ -22,7 +22,7 @@
   home.username = "lee";
   home.homeDirectory = "/home/lee";
 
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+  home.stateVersion = "24.11";
 
   /*
 
@@ -59,9 +59,13 @@
           return 1
         fi
       }
+      alias rb=rebuild
     '';
   };
 
+  # ==============================
+  #         SPOTIFY (SPICETIFY)
+  # ==============================
   programs.spicetify = let
     spicetify = inputs.spicetify.legacyPackages.${pkgs.system};
   in {
@@ -78,8 +82,6 @@
     theme = spicetify.themes.catppuccin;
     colorScheme = "frappe";
   };
-
-  #  home.packages = [ pkgs.example ];
 
   programs.home-manager.enable = true;
 }

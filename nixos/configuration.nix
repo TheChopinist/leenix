@@ -44,8 +44,8 @@
     librewolf
     brave
     (discord.override {
-      withOpenASAR = true;
-      # withVencord = true;
+      # withOpenASAR = true;
+      withVencord = true;
     })
     vulkan-loader
     protonup
@@ -58,6 +58,7 @@
     ranger
     lutris
     rmpc
+    ncmpcpp
 
     waybar
 
