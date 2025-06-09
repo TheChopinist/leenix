@@ -12,12 +12,10 @@
     for DIR in $WALLPAPER_DIRS; do
       echo "Checking directory: $DIR"
       if [ -d "$DIR" ]; then
-        for IMG in "$DIR"/*.{jpg,png}; do
-          if [ -e "$IMG" ]; then
-            echo "  Found image: $IMG"
-            WALLPAPERS+=("$IMG")
-          fi
-        done
+        while IFS= read -r IMG; do
+          echo "  Found image: $IMG"
+          WALLPAPERS+=("$IMG")
+        done < <(find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.png' \))
       else
         echo "  Directory does not exist: $DIR"
       fi
