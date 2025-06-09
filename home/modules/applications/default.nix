@@ -6,4 +6,30 @@
     ./dunst/default.nix
     ./hyprpaper/default.nix
   ];
+
+  # Required environment packages
+  home.packages = with pkgs; [
+    librewolf
+    brave
+    (discord.override {
+      # withOpenASAR = true;
+      withVencord = true;
+    })
+    vulkan-loader
+    protonup
+    kitty
+    vscodium
+    easyeffects
+    cmatrix
+    cava
+    btop
+    ranger
+    lutris
+
+    mangohud
+    gamescope
+
+    tty-clock
+    cbonsai
+  ];
 }

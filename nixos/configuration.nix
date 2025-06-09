@@ -40,37 +40,6 @@
     git
     nodejs
     alejandra
-
-    librewolf
-    brave
-    (discord.override {
-      # withOpenASAR = true;
-      withVencord = true;
-    })
-    vulkan-loader
-    protonup
-    kitty
-    vscodium
-    easyeffects
-    cmatrix
-    cava
-    btop
-    ranger
-    lutris
-    rmpc
-    ncmpcpp
-
-    waybar
-
-    wofi
-    dunst
-    hyprpaper
-
-    mangohud
-    gamescope
-
-    tty-clock
-    cbonsai
   ];
 
   fonts.fontconfig.defaultFonts.monospace = ["Fira Code"];
