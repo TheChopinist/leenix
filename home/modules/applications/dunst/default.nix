@@ -5,9 +5,9 @@
       global = {
         # Basic layout
         width = 320;
-        height = 100;
+        height = "(0, 100)";
         origin = "top-right";
-        offset = "20x50";
+        offset = "(20, 50)";
 
         # No bullshit appearance
         frame_width = 1;

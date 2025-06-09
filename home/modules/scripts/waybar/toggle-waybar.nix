@@ -1,21 +1,18 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.file.".config/hypr/scripts/toggle-waybar.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
-      # Robust Waybar toggle script
+      CONFIG_FILE="$HOME/.config/waybar/style.css"
 
-      if pgrep -f 'waybar -b bar-0' >/dev/null; then
-          pkill -f 'waybar -b bar-0'
-          ${pkgs.libnotify}/bin/notify-send "Waybar" "Killed all instances"
+      if grep -q "display: none" "$CONFIG_FILE"; then
+          sed -i 's/display: none/display: block/' "$CONFIG_FILE"
       else
-          ${config.wayland.windowManager.hyprland.package}/bin/waybar -b bar-0 && \
-          ${pkgs.libnotify}/bin/notify-send "Waybar" "Started"
+          sed -i 's/display: block/display: none/' "$CONFIG_FILE"
       fi
+
+      # Reload Waybar
+      pkill -USR1 waybar
     '';
   };
 }
