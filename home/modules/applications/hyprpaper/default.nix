@@ -1,29 +1,48 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  # Get all wallpaper files from the wallpapers directory
-  wallpapers = lib.cleanSourceWith {
-    src = ./wallpapers;
-    filter = name: type:
-      type == "directory" || lib.strings.hasSuffix ".jpg" name || lib.strings.hasSuffix ".png" name;
-  };
+{pkgs, ...}: let
+  # Replace this with your actual Nix-managed wallpapers path
+  nixWallpapers = "/nix/store/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-wallpapers";
+  userWallpapers = "/home/lee/Pictures/wallpapers";
 
-  # Script to randomly select and set a wallpaper
   randomWallpaperScript = pkgs.writeShellScriptBin "hyprpaper-random" ''
     #!/usr/bin/env bash
-    WALLPAPERS=(${toString wallpapers}/*)
-    SELECTED_WALL=''${WALLPAPERS[$RANDOM % ''${#WALLPAPERS[@]}]}
-    hyprctl hyprpaper unload all
-    hyprctl hyprpaper preload "$SELECTED_WALL"
-    hyprctl hyprpaper wallpaper ",''${SELECTED_WALL}"
+    echo "---- hyprpaper-random DEBUG ----"
+    WALLPAPER_DIRS="${nixWallpapers} ${userWallpapers}"
+    echo "All wallpaper dirs: $WALLPAPER_DIRS"
+    WALLPAPERS=()
+    for DIR in $WALLPAPER_DIRS; do
+      echo "Checking directory: $DIR"
+      if [ -d "$DIR" ]; then
+        for IMG in "$DIR"/*.{jpg,png}; do
+          if [ -e "$IMG" ]; then
+            echo "  Found image: $IMG"
+            WALLPAPERS+=("$IMG")
+          fi
+        done
+      else
+        echo "  Directory does not exist: $DIR"
+      fi
+    done
+    echo "Total wallpapers found: ''${#WALLPAPERS[@]}"
+    if [ ''${#WALLPAPERS[@]} -eq 0 ]; then
+      echo "No wallpapers found! Exiting."
+      exit 1
+    fi
+    for idx in "''${!WALLPAPERS[@]}"; do
+      echo "Wallpaper [$idx]: ''${WALLPAPERS[$idx]}"
+    done
+    SELECTED_WALL="''${WALLPAPERS[$RANDOM % ''${#WALLPAPERS[@]}]}"
+    echo "Selected wallpaper: $SELECTED_WALL"
+    for m in $(hyprctl monitors | grep Monitor | awk '{print $2}'); do
+      echo "Setting wallpaper for monitor: $m"
+      hyprctl hyprpaper unload all
+      hyprctl hyprpaper preload "$SELECTED_WALL"
+      hyprctl hyprpaper wallpaper "$m,$SELECTED_WALL"
+    done
+    echo "---- hyprpaper-random END ----"
   '';
 in {
-  # Make the script available system-wide
   home.packages = [randomWallpaperScript];
 
-  # Systemd service for automatic wallpaper rotation
   systemd.user.services.hyprpaper-random = {
     Unit = {
       Description = "Random Hyprpaper Wallpaper";
@@ -47,7 +66,6 @@ in {
     Install.WantedBy = ["timers.target"];
   };
 
-  # Hyprpaper configuration
   services.hyprpaper = {
     enable = true;
     settings = {
