@@ -136,6 +136,7 @@
         "SUPER, right, movefocus, r"
         "SUPER, up, movefocus, u"
         "SUPER, down, movefocus, d"
+        "SUPER, D, exec, ${config.home.homeDirectory}/.config/hypr/scripts/toggle-waybar.sh"
 
         # Vim-style movement
         "SUPER SHIFT, H, movewindow, l"
