@@ -25,17 +25,21 @@
       echo "No wallpapers found! Exiting."
       exit 1
     fi
-    for idx in "''${!WALLPAPERS[@]}"; do
-      echo "Wallpaper [$idx]: ''${WALLPAPERS[$idx]}"
-    done
     SELECTED_WALL="''${WALLPAPERS[$RANDOM % ''${#WALLPAPERS[@]}]}"
     echo "Selected wallpaper: $SELECTED_WALL"
+
+    # First preload the new wallpaper
+    hyprctl hyprpaper preload "$SELECTED_WALL"
+
+    # Then set it on all monitors
     for m in $(hyprctl monitors | grep Monitor | awk '{print $2}'); do
       echo "Setting wallpaper for monitor: $m"
-      hyprctl hyprpaper unload all
-      hyprctl hyprpaper preload "$SELECTED_WALL"
       hyprctl hyprpaper wallpaper "$m,$SELECTED_WALL"
     done
+
+    # Only unload old wallpapers after the new one is set
+    hyprctl hyprpaper unload all
+
     echo "---- hyprpaper-random END ----"
   '';
 in {
