@@ -31,5 +31,7 @@
 
     tty-clock
     cbonsai
+
+    isoimagewriter
   ];
 }
