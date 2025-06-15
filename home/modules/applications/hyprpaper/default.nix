@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   # Replace this with your actual Nix-managed wallpapers path
-  nixWallpapers = "/nix/store/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-wallpapers";
+  nixWallpapers = "/home/lee/nixos/home/modules/applications/hyprpaper/wallpapers";
   userWallpapers = "/home/lee/Pictures/wallpapers";
 
   randomWallpaperScript = pkgs.writeShellScriptBin "hyprpaper-random" ''

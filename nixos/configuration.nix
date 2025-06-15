@@ -25,8 +25,6 @@
   boot.kernelParams = [
     "initcall_blacklist=simpledrm_platform_driver_init"
   ];
-  # dont have sudo rn? !!!! REMOVE ON NEW PC SINCE I MESSED UP HERE ONCE
-  security.sudo.enable = true;
 
   # ============================
   #         APPLICATIONS
