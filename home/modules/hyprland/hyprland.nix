@@ -23,6 +23,8 @@
         "dunst"
         "easyeffects --gapplication-service"
         "sleep 1 && hyprpaper-random"
+        "eww daemon" # Start EWW daemon first
+        "sleep 1 && $HOME/.config/hypr/scripts/eww-greeting.sh" # Then show greeting
       ];
 
       env = [

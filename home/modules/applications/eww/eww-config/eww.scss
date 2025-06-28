@@ -1,0 +1,24 @@
+.greeting-container {
+  background: transparent;
+  padding: 2rem;
+}
+
+.greeting-main {
+  font-family: "Fira Code", monospace;
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.5s ease-out;
+}
+
+.greeting-sub {
+  font-family: "Fira Code", monospace;
+  font-size: 1.1rem;
+  color: rgba(200, 200, 200, 0.8);
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-out {
+  opacity: 0;
+}

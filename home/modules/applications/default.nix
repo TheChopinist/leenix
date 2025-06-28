@@ -5,6 +5,7 @@
     ./kitty/default.nix
     ./dunst/default.nix
     ./hyprpaper/default.nix
+    ./eww/default.nix
   ];
 
   # Required environment packages
