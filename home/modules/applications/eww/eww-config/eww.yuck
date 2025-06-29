@@ -1,8 +1,8 @@
 (defwindow greeting
   :monitor 0
   :geometry (geometry
-              :width "100%"
-              :height "100%"
+              :width "80%"
+              :height "80%"
               :anchor "center center")
   :stacking "overlay"
   :focusable false
@@ -12,9 +12,14 @@
     :orientation "vertical"
     :halign "center"
     :valign "center"
+    :spacing 20
     (label
       :class "greeting-main"
       :text {greeting-text})
     (label
       :class "greeting-sub"
-      :text {greeting-subtext})))
+      :text {greeting-subtext})
+    (button
+      :class "close-button"
+      :onclick "eww close greeting"
+      "✕")))

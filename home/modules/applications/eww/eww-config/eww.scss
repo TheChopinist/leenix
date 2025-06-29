@@ -1,6 +1,8 @@
 .greeting-container {
-  background: transparent;
-  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  padding: 3rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .greeting-main {
@@ -17,6 +19,19 @@
   font-size: 1.1rem;
   color: rgba(200, 200, 200, 0.8);
   transition: opacity 0.5s ease-out;
+}
+
+.close-button {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .fade-out {
