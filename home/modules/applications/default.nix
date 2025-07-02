@@ -26,9 +26,6 @@
     ranger
     lutris
 
-    mangohud
-    gamescope
-
     tty-clock
     cbonsai
 

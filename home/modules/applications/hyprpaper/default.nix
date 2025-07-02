@@ -62,7 +62,7 @@ in {
     Unit.Description = "Timer for random Hyprpaper wallpapers";
     Timer = {
       OnBootSec = "10s";
-      OnUnitActiveSec = "1h";
+      OnUnitActiveSec = "12h";
       Unit = "hyprpaper-random.service";
     };
     Install.WantedBy = ["timers.target"];
