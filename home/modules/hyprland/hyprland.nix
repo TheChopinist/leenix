@@ -124,6 +124,10 @@
 
       gestures.workspace_swipe = false;
 
+      extraConfig = ''
+        bindr = , SUPER_L, exec, wofi --show drun
+      '';
+
       bind = [
         "SUPER, Q, exec, kitty"
         "SUPER, C, killactive"
@@ -131,7 +135,6 @@
         "SUPER, E, exec, kitty -e ranger"
         "SUPER, F, fullscreen"
         "SUPER, V, togglefloating"
-        "SUPER, exec, wofi --show drun"
         "SUPER, P, pseudo"
         "SUPER, J, togglesplit"
         "SUPER, left, movefocus, l"
