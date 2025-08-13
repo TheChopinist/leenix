@@ -131,7 +131,7 @@
         "SUPER, E, exec, kitty -e ranger"
         "SUPER, F, fullscreen"
         "SUPER, V, togglefloating"
-        "SUPER, R, exec, wofi --show drun"
+        "SUPER, exec, wofi --show drun"
         "SUPER, P, pseudo"
         "SUPER, J, togglesplit"
         "SUPER, left, movefocus, l"
