@@ -24,7 +24,6 @@
     cava
     btop
     ranger
-    lutris
 
     tty-clock
     cbonsai
