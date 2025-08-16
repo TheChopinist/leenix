@@ -56,7 +56,7 @@
               echo "✅ System rebuild successful!"
 
               echo "🗑️ Step 3: Cleaning up old generations (keeping last 10)..."
-              if sudo nix-collect-garbage --delete-older-than 10d; then
+              if sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage -d; then
                   echo "✅ Cleanup completed successfully!"
                   echo "✨ All done! System updated and cleaned."
               else
