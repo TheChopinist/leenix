@@ -19,6 +19,7 @@
     protonup
     kitty
     vscodium
+    obs-studio
     easyeffects
     cmatrix
     cava
