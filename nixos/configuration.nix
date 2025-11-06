@@ -35,6 +35,7 @@
   environment.systemPackages = with pkgs; [
     fira-code
     fastfetch
+    pfetch-rs
     git
     nodejs
     alejandra
