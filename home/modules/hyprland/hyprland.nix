@@ -122,8 +122,6 @@
         touchpad.natural_scroll = false;
       };
 
-      gestures.workspace_swipe = false;
-
       bind = [
         "SUPER, Q, exec, kitty"
         "SUPER, C, killactive"

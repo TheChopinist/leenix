@@ -16,7 +16,7 @@
       withVencord = true;
     })
     vulkan-loader
-    protonup
+    protonup-ng
     kitty
     vscodium
     obs-studio
