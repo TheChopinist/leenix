@@ -52,7 +52,7 @@
           fi
 
           echo "🔧 Step 2: Rebuilding system with flake..."
-          if sudo nixos-rebuild switch --flake /home/lee/nixos#leenix; then
+          if sudo nixos-rebuild switch --flake /home/lee/nixos#leenix |& nom; then
               echo "✅ System rebuild successful!"
 
               echo "🗑️ Step 3: Cleaning up old generations (keeping last 10)..."
