@@ -25,6 +25,7 @@
     cava
     btop
     ranger
+    musescore
 
     tty-clock
     cbonsai
