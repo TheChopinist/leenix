@@ -37,6 +37,7 @@
     fastfetch
     pfetch-rs
     git
+    nix-output-monitor
     nodejs
     alejandra
   ];
