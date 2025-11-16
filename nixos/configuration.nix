@@ -42,7 +42,7 @@
     alejandra
   ];
 
-  fonts.fontconfig.defaultFonts.monospace = ["Fira Code"];
+  fonts.fontconfig.defaultFonts.monospace = ["FiraCode Nerd Font"];
 
   # ============================
   #          GAMING
