@@ -48,32 +48,27 @@
           if (cd /home/lee/nixos && nix flake update); then
               echo "✅ Flake inputs updated successfully!"
           else
-              echo "⚠️ Flake update failed or rate limited. Skipping update and continuing with rebuild."
+              echo "⚠️ Flake update failed or rate limited."
           fi
 
-          echo "🔧 Step 2: Rebuilding system with flake..."
-          if sudo nixos-rebuild switch \
-                --flake /home/lee/nixos#leenix \
-                --log-format internal-json -v \
-                |& nom --json; then
+          echo "🔧 Step 2: Building system (with nom)..."
+          if nix build /home/lee/nixos#nixosConfigurations.leenix.config.system.build.toplevel \
+               --log-format internal-json -v |& nom --json; then
 
-              echo "✅ System rebuild successful!"
+              echo "🔄 Activating system..."
+              sudo /run/current-system/bin/switch-to-configuration switch \
+                  --build /home/lee/nixos#leenix
 
-              echo "🗑️ Step 3: Cleaning up old generations (keeping last 10)..."
-              if sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +10 \
-                     && sudo nix-collect-garbage -d; then
-                  echo "✅ Cleanup completed successfully!"
-                  echo "✨ All done! System updated and cleaned."
-              else
-                  echo "❌ Error during cleanup!" >&2
-                  return 1
-              fi
+              echo "🗑 Cleaning old generations..."
+              sudo nix-collect-garbage -d
+
+              echo "✨ System updated successfully!"
           else
-              echo "❌ Rebuild failed!" >&2
+              echo "❌ Build failed!" >&2
               return 1
           fi
       }
-      alias rb=rebuild
+            alias rb=rebuild
     '';
   };
 
