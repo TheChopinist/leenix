@@ -52,11 +52,16 @@
           fi
 
           echo "🔧 Step 2: Rebuilding system with flake..."
-          if sudo nixos-rebuild switch --flake /home/lee/nixos#leenix |& nom; then
+          if sudo nixos-rebuild switch \
+                --flake /home/lee/nixos#leenix \
+                --log-format internal-json -v \
+                |& nom --json; then
+
               echo "✅ System rebuild successful!"
 
               echo "🗑️ Step 3: Cleaning up old generations (keeping last 10)..."
-              if sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage -d; then
+              if sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +10 \
+                     && sudo nix-collect-garbage -d; then
                   echo "✅ Cleanup completed successfully!"
                   echo "✨ All done! System updated and cleaned."
               else
