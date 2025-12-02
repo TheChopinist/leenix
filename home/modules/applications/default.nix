@@ -29,6 +29,7 @@
 
     tty-clock
     cbonsai
+    zed-editor
 
     isoimagewriter
   ];
