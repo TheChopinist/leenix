@@ -23,6 +23,8 @@
   };
   */
 
+  networking.networkmanager.enable = true;
+
   networking.hostName = "leenix";
   time.timeZone = "Europe/Zurich";
 
